@@ -1,0 +1,8 @@
+# SIMULATED EVIDENCE — Cybersec Academy synthetic dataset (synthetic-v1).
+# This file is a HARMLESS stand-in for a malicious script recovered in a fictional case.
+# It contains no working attack code. Its only purpose is to be hashed and examined.
+# Analyst observation points (what a real script of this kind might do):
+#   1. It runs from a user Temp folder (suspicious location).
+#   2. It is launched hidden by a scheduled task every 15 minutes (persistence).
+#   3. A real sample would typically contact a remote server (see alert CSA-DET-005).
+Write-Output "Cybersec Academy simulated script - no actions performed"
