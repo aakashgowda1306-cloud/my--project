@@ -1,0 +1,42 @@
+# ---- Secrets: never commit these ----
+.env
+.env.*
+!.env.example
+!**/.env.example
+*.pem
+*.key
+supabase/.temp/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# ---- Node / Next.js ----
+node_modules/
+.next/
+out/
+.vercel/
+*.tsbuildinfo
+next-env.d.ts
+
+# ---- OS / editors ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# ---- Build / test artefacts ----
+dist/
+build/
+coverage/
+playwright-report/
+test-results/
