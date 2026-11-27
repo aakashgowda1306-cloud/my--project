@@ -1,0 +1,24 @@
+# Isolated local stack: Postgres + API on a private Docker network.
+#   docker compose -f docker/docker-compose.yml up --build
+# Then, once:  docker compose -f docker/docker-compose.yml exec api python -m app.cli migrate --with-local-shim
+#              docker compose -f docker/docker-compose.yml exec api python -m app.cli seed
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: postgres          # local development only
+      POSTGRES_DB: cybersec_academy
+    ports: ["127.0.0.1:5432:5432"]         # bound to localhost, not your whole network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      retries: 10
+  api:
+    build: { context: .., dockerfile: docker/backend.Dockerfile }
+    environment:
+      AUTH_MODE: local
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@db:5432/cybersec_academy
+      LOCAL_JWT_SECRET: ${LOCAL_JWT_SECRET:?set LOCAL_JWT_SECRET in your shell or a .env file}
+      CORS_ORIGINS: http://localhost:3000
+    ports: ["127.0.0.1:8000:8000"]
+    depends_on: { db: { condition: service_healthy } }

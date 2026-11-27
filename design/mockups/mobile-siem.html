@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=390"><title>Mobile SIEM — Cybersec Academy (mockup)</title>
+<link rel="stylesheet" href="../tokens/tokens.css"><style>
+body { width: 390px; }
+.m { padding: 16px 16px 96px; }
+.mtop { display:flex; align-items:center; justify-content:space-between; margin-bottom: 18px; }
+.mtop h1 { font-size: var(--fs-lg); font-weight:600; }
+.card { background: var(--surface); border:1px solid var(--line-soft); border-radius: var(--r-lg); padding: 16px; margin-bottom: 14px; }
+.card h2 { font-size: var(--fs-md); font-weight:600; margin: 4px 0 8px; }
+.bar { height:6px; background: var(--raised); border-radius:99px; overflow:hidden; }
+.bar > i { display:block; height:100%; background: var(--cyan); }
+.row2 { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+.row2 .card { margin:0; } .row2 b { font-size: 26px; font-weight:600; display:block; }
+.row2 span { font-size: var(--fs-xs); color: var(--text-muted); }
+.list li { list-style:none; padding: 12px 0; border-top:1px solid var(--line-soft); font-size: var(--fs-sm); }
+.list { padding:0; } .list li:first-child { border-top:0; padding-top: 4px; }
+.tabbar { position:fixed; bottom:0; left:0; width:390px; height: 72px; background: var(--surface); border-top:1px solid var(--line);
+          display:grid; grid-template-columns: repeat(5, 1fr); padding-bottom: 8px; }
+.tabbar a { display:flex; flex-direction:column; align-items:center; justify-content:center; gap: 4px; font-size: 11px; color: var(--text-faint); }
+.tabbar a.on { color: var(--electric); }
+.mq { height: 44px; background: var(--surface); border:1px solid var(--electric); border-radius: var(--r-md); display:flex;
+      align-items:center; gap:8px; padding: 0 12px; font-family: var(--font-mono); font-size: 13px; margin-bottom: 10px; }
+.mchips { display:flex; gap: 8px; overflow:hidden; margin-bottom: 14px; }
+.mchips span { flex: none; height: 32px; padding: 0 12px; border-radius: 99px; border:1px solid var(--line); display:flex;
+               align-items:center; font-size: var(--fs-xs); color: var(--text-muted); background: var(--surface); }
+.ev { background: var(--surface); border:1px solid var(--line-soft); border-radius: var(--r-md); padding: 12px 14px; margin-bottom: 10px; }
+.ev .meta { display:flex; justify-content:space-between; font-size: var(--fs-xs); color: var(--text-faint); margin-bottom: 6px; }
+.ev p { font-family: var(--font-mono); font-size: 12.5px; line-height: 1.5; }
+.ev.sel { border-color: var(--electric); }
+</style></head><body><div class="m"><div class="mtop"><h1>SIEM Lab</h1><span class="sim">Simulated data</span></div>
+<div class="mq"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg> 203.0.113.45</div>
+<div class="mchips"><span>Severity</span><span>Source</span><span>Outcome</span><span>Host</span><span>Dates</span></div>
+<p class="muted" style="font-size:var(--fs-xs);margin-bottom:10px">19 events · newest first · tap an event to investigate</p><div class="ev sel"><div class="meta"><span class="sev sev-high">High</span><span>Fri 20 22:09:00</span></div><p>VPN sign-in succeeded for m.okafor from 203.0.113.45</p><div class="faint" style="font-size:var(--fs-xs);margin-top:6px">vpn-gw-01.corp.example</div></div><div class="ev"><div class="meta"><span class="sev sev-medium">Medium</span><span>Fri 20 22:07:30</span></div><p>VPN sign-in failed: invalid credentials for m.okafor from 203.0.113.45</p><div class="faint" style="font-size:var(--fs-xs);margin-top:6px">vpn-gw-01.corp.example</div></div><div class="ev"><div class="meta"><span class="sev sev-medium">Medium</span><span>Fri 20 22:07:00</span></div><p>VPN sign-in failed: invalid credentials for m.okafor from 203.0.113.45</p><div class="faint" style="font-size:var(--fs-xs);margin-top:6px">vpn-gw-01.corp.example</div></div><div class="ev"><div class="meta"><span class="sev sev-medium">Medium</span><span>Tue 17 02:14:18</span></div><p>Failed password for root from 203.0.113.45 port 40126</p><div class="faint" style="font-size:var(--fs-xs);margin-top:6px">lnx-bastion-01.corp.example</div></div>
+</div><nav class="tabbar" aria-label="Main"><a class="" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</a><a class="" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8l10-5 10 5-10 5z"/><path d="M6 10v5c3 2 9 2 12 0v-5"/></svg>Learn</a><a class="" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>SOC</a><a class="on" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Labs</a><a class="" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>More</a></nav></body></html>
