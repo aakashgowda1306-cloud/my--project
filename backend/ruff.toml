@@ -1,0 +1,8 @@
+line-length = 140
+target-version = "py312"
+[lint]
+select = ["E", "F", "W", "I", "B", "UP", "S"]
+ignore = ["S101", "S608", "B008"]  # asserts in tests; SQL built only from fixed fragments; FastAPI Depends()
+
+[lint.per-file-ignores]
+"tests/**" = ["S105", "S106"]  # fake credentials in tests are intentional

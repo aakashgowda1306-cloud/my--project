@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SIMULATED EVIDENCE — Cybersec Academy synthetic dataset (synthetic-v1). Exported task definition, fictional host. -->
+<Task version="1.4">
+  <RegistrationInfo>
+    <Date>2026-11-20T23:02:00Z</Date>
+    <Author>CORP\m.okafor</Author>
+    <URI>\OneDriveSyncHelper</URI>
+  </RegistrationInfo>
+  <Triggers>
+    <TimeTrigger><Repetition><Interval>PT15M</Interval></Repetition><StartBoundary>2026-11-20T23:05:00Z</StartBoundary></TimeTrigger>
+  </Triggers>
+  <Actions Context="Author">
+    <Exec>
+      <Command>powershell.exe</Command>
+      <Arguments>-W Hidden -File C:\Users\m.okafor\AppData\Local\Temp\sync.ps1</Arguments>
+    </Exec>
+  </Actions>
+</Task>

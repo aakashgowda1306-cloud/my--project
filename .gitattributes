@@ -1,0 +1,5 @@
+# Default: normalise text files to LF in the repository.
+* text=auto eol=lf
+# Forensic evidence must stay byte-for-byte identical on every OS,
+# otherwise its SHA-256 hash would change. Never convert line endings.
+labs/forensics/evidence/** -text

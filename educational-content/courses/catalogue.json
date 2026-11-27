@@ -1,0 +1,153 @@
+{
+  "_comment": "Course structure. Lesson bodies live in ../lessons/<course-slug>/<lesson-slug>.md. Quiz 'answer' is the 0-based index of the correct option; it is stored in a table learners cannot read.",
+  "courses": [
+    {
+      "slug": "cybersecurity-fundamentals",
+      "title": "Cybersecurity Fundamentals",
+      "summary": "The core ideas every defender uses daily: the CIA triad, threats and risk, and defence in depth.",
+      "learning_path": "1. Cybersecurity fundamentals",
+      "level": "beginner",
+      "department": "academy",
+      "modules": [
+        {
+          "slug": "core-concepts",
+          "title": "Core concepts",
+          "lessons": [
+            {
+              "slug": "the-cia-triad",
+              "title": "The CIA triad",
+              "summary": "Confidentiality, integrity and availability — the three things security protects.",
+              "learning_outcome": "Classify any security incident by which part of the CIA triad it harms.",
+              "estimated_minutes": 12,
+              "quiz": [
+                {"prompt": "An attacker changes the amount on an invoice stored in a database. Which property is harmed?", "options": ["Confidentiality", "Integrity", "Availability"], "answer": 1, "explanation": "The data was altered without authorisation — that breaks integrity."},
+                {"prompt": "A website is offline because it is flooded with traffic. Which property is harmed?", "options": ["Confidentiality", "Integrity", "Availability"], "answer": 2, "explanation": "Legitimate users cannot reach the service — availability."},
+                {"prompt": "Which control mainly protects confidentiality?", "options": ["Backups", "Encryption", "Load balancers", "Checksums"], "answer": 1, "explanation": "Encryption keeps data unreadable to people without the key."}
+              ]
+            },
+            {
+              "slug": "threats-vulnerabilities-risk",
+              "title": "Threats, vulnerabilities and risk",
+              "summary": "How a threat, a weakness and an asset combine into risk — and how defenders reduce it.",
+              "learning_outcome": "Explain a security problem as threat + vulnerability + impact, and propose one control.",
+              "estimated_minutes": 15,
+              "quiz": [
+                {"prompt": "A server allows SSH logins with passwords. In risk language, this is a…", "options": ["Threat", "Vulnerability", "Impact", "Control"], "answer": 1, "explanation": "It is a weakness that a threat could exploit."},
+                {"prompt": "Which change reduces the LIKELIHOOD part of the brute-force risk most directly?", "options": ["Buying cyber insurance", "Disabling password logins and using keys", "Writing an incident report", "Adding more disk space"], "answer": 1, "explanation": "Removing password logins removes what brute force needs."},
+                {"prompt": "Risk is best described as…", "options": ["Any attacker on the internet", "Likelihood that a threat exploits a vulnerability, combined with the impact", "A list of software bugs", "The firewall configuration"], "answer": 1, "explanation": "Risk combines likelihood and impact."}
+              ]
+            },
+            {
+              "slug": "defence-in-depth",
+              "title": "Defence in depth",
+              "summary": "Why defenders layer many imperfect controls instead of trusting one perfect wall.",
+              "learning_outcome": "Map preventive, detective and corrective controls onto a simple attack.",
+              "estimated_minutes": 12,
+              "quiz": [
+                {"prompt": "A SIEM alert for repeated failed logins is which type of control?", "options": ["Preventive", "Detective", "Corrective"], "answer": 1, "explanation": "It detects activity; it does not block it."},
+                {"prompt": "Restoring files from a backup after an incident is…", "options": ["Preventive", "Detective", "Corrective"], "answer": 2, "explanation": "It corrects the damage after the event."},
+                {"prompt": "The main idea of defence in depth is…", "options": ["Buy the best firewall", "Use several independent layers so one failure is not fatal", "Hide the network", "Only monitor at night"], "answer": 1, "explanation": "Layers cover each other's gaps."}
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "computer-networking-basics",
+      "title": "Computer Networking Basics",
+      "summary": "IP addresses, subnets, TCP and UDP, DNS and HTTP(S) — explained for defenders.",
+      "learning_path": "2. Computer networking",
+      "level": "beginner",
+      "department": "network",
+      "modules": [
+        {
+          "slug": "addressing-and-transport",
+          "title": "Addressing and transport",
+          "lessons": [
+            {
+              "slug": "ip-addresses-and-subnets",
+              "title": "IP addresses and subnets",
+              "summary": "What an IPv4 address is, what /24 means, and how to find network and broadcast addresses.",
+              "learning_outcome": "Calculate the network address, broadcast address and usable hosts of a subnet.",
+              "estimated_minutes": 20,
+              "exercise": {"lab": "network-subnet-24", "title": "Subnet the finance workstation", "instructions_md": "Open the Network Lab and solve **Subnetting: a /24 network**."},
+              "quiz": [
+                {"prompt": "How many usable host addresses are in a /24 network?", "options": ["256", "255", "254", "24"], "answer": 2, "explanation": "256 addresses minus the network and broadcast addresses."},
+                {"prompt": "What is the network address of 192.168.10.77/24?", "options": ["192.168.10.0", "192.168.10.1", "192.168.0.0", "192.168.10.255"], "answer": 0, "explanation": "With /24 the first three octets are the network; the last octet becomes 0."},
+                {"prompt": "Which range is private (RFC 1918)?", "options": ["8.8.8.0/24", "10.0.0.0/8", "203.0.113.0/24", "1.1.1.0/24"], "answer": 1, "explanation": "10.0.0.0/8 is private. 203.0.113.0/24 is reserved for documentation."}
+              ]
+            },
+            {
+              "slug": "tcp-udp-and-ports",
+              "title": "TCP, UDP and ports",
+              "summary": "How the three-way handshake works and why port numbers matter in investigations.",
+              "learning_outcome": "Read a connection record and explain what the ports and TCP flags tell you.",
+              "estimated_minutes": 18,
+              "exercise": {"lab": "network-beacon-hunt", "title": "Spot the unusual port", "instructions_md": "Open the Network Lab traffic view and solve **Find the beaconing host**."},
+              "quiz": [
+                {"prompt": "What is the order of the TCP three-way handshake?", "options": ["ACK, SYN, SYN-ACK", "SYN, SYN-ACK, ACK", "SYN, ACK, FIN", "HELLO, ACK, DATA"], "answer": 1, "explanation": "SYN → SYN-ACK → ACK."},
+                {"prompt": "DNS queries normally use…", "options": ["TCP port 22", "UDP port 53", "TCP port 443", "UDP port 4444"], "answer": 1, "explanation": "DNS uses UDP 53 for most queries."},
+                {"prompt": "Why is repeated traffic to port 4444 at exact 60-second intervals worth investigating?", "options": ["Port 4444 is always safe", "Regular, machine-like timing on an unusual port can indicate beaconing", "It means the network is slow", "It is how DNS works"], "answer": 1, "explanation": "Automated malware often 'checks in' on a fixed schedule."}
+              ]
+            },
+            {
+              "slug": "dns-and-http",
+              "title": "DNS, HTTP and HTTPS",
+              "summary": "How names become addresses, and what HTTPS protects (and what it does not).",
+              "learning_outcome": "Describe what a defender can and cannot see in DNS, HTTP and HTTPS traffic.",
+              "estimated_minutes": 15,
+              "quiz": [
+                {"prompt": "DNS translates…", "options": ["IP addresses into MAC addresses", "Domain names into IP addresses", "HTTP into HTTPS", "Passwords into hashes"], "answer": 1, "explanation": "DNS resolves names such as lnx-web-01.corp.example to addresses."},
+                {"prompt": "With HTTPS, an observer on the network can normally still see…", "options": ["The full page content", "The submitted password", "The destination IP address", "The cookies"], "answer": 2, "explanation": "TLS encrypts content, but the destination address is visible."},
+                {"prompt": "HTTP status 404 means…", "options": ["Success", "Not modified", "Not found", "Server error"], "answer": 2, "explanation": "The requested resource does not exist."}
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "soc-operations-and-log-analysis",
+      "title": "SOC Operations and Log Analysis",
+      "summary": "What a Security Operations Centre does, how alerts are triaged, and how to read Windows and Linux logs.",
+      "learning_path": "6. SOC operations",
+      "level": "beginner",
+      "department": "soc",
+      "modules": [
+        {
+          "slug": "working-in-a-soc",
+          "title": "Working in a SOC",
+          "lessons": [
+            {
+              "slug": "alert-triage",
+              "title": "Alert triage",
+              "summary": "How analysts decide in minutes whether an alert is a real threat, expected activity or noise.",
+              "learning_outcome": "Triage an alert using the five analyst questions and record a justified verdict.",
+              "estimated_minutes": 18,
+              "exercise": {"lab": "soc-triage-approved-change", "title": "Triage two similar alerts", "instructions_md": "Open the SOC Operations Centre and solve **Separate expected activity from a real threat**."},
+              "quiz": [
+                {"prompt": "An alert fires for a privileged group change that has an approved change ticket. The best verdict is…", "options": ["True positive — escalate immediately", "Expected/benign activity — document the ticket", "Ignore it without notes", "Delete the alert"], "answer": 1, "explanation": "Context makes it expected activity; documenting the ticket keeps the decision auditable."},
+                {"prompt": "Which question is part of triage?", "options": ["What is the attacker's real name?", "Did any related activity succeed afterwards?", "How much did the firewall cost?", "Which analyst is fastest?"], "answer": 1, "explanation": "Checking for follow-on success shows whether an attempt became a compromise."},
+                {"prompt": "A 'false positive' is…", "options": ["A real attack that was missed", "An alert on activity that was not actually malicious", "A correct alert", "A broken log source"], "answer": 1, "explanation": "The rule fired, but nothing harmful happened."}
+              ]
+            },
+            {
+              "slug": "reading-windows-and-linux-logs",
+              "title": "Reading Windows and Linux logs",
+              "summary": "The event IDs and log lines that matter most for authentication and persistence.",
+              "learning_outcome": "Recognise key Windows event IDs and Linux auth log lines and explain what each means.",
+              "estimated_minutes": 20,
+              "exercise": {"lab": "siem-bruteforce-source", "title": "Find the brute-force source", "instructions_md": "Open the SIEM Investigation Lab and solve **Identify the brute-force source**."},
+              "quiz": [
+                {"prompt": "Windows event 4625 means…", "options": ["Successful logon", "Failed logon", "Service installed", "Audit log cleared"], "answer": 1, "explanation": "4624 is success, 4625 is failure."},
+                {"prompt": "Windows event 1102 means…", "options": ["The security audit log was cleared", "A user changed their wallpaper", "A scheduled task was created", "A new process started"], "answer": 0, "explanation": "Clearing the audit log is rarely routine and is a strong signal."},
+                {"prompt": "On Linux, failed SSH logins are typically found in…", "options": ["/etc/passwd", "/var/log/auth.log (or journalctl for sshd)", "/tmp", "/home/user/.bashrc"], "answer": 1, "explanation": "sshd writes to the authentication log."}
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

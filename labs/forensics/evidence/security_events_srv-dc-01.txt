@@ -1,0 +1,6 @@
+# SIMULATED EVIDENCE — Cybersec Academy synthetic dataset (synthetic-v1). Summary export of Windows Security events.
+2026-11-18 10:15:00Z  4732  Member r.svensson added to local group Backup Operators by admin.ops (Change ticket CHG-1042, approved)
+2026-11-20 22:31:00Z  4728  Member m.okafor added to global group Domain Admins by m.okafor
+2026-11-21 02:47:00Z  4624  Logon type 10 (RemoteInteractive) account m.okafor from 10.20.4.27
+2026-11-21 03:20:00Z  4719  System audit policy changed: Logon/Logoff - Logon: Success removed, Failure removed (by m.okafor)
+2026-11-21 03:25:00Z  1102  The audit log was cleared. Subject: m.okafor

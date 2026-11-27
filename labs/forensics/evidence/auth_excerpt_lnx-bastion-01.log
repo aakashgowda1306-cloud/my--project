@@ -1,0 +1,14 @@
+# SIMULATED EVIDENCE — Cybersec Academy synthetic dataset (synthetic-v1). Not a real system log.
+Nov 17 02:14:00 lnx-bastion-01 sshd[2140]: Failed password for root from 203.0.113.45 port 40000 ssh2
+Nov 17 02:14:18 lnx-bastion-01 sshd[2158]: Failed password for root from 203.0.113.45 port 40126 ssh2
+Nov 17 02:14:36 lnx-bastion-01 sshd[2176]: Failed password for root from 203.0.113.45 port 40252 ssh2
+Nov 17 02:14:54 lnx-bastion-01 sshd[2194]: Failed password for root from 203.0.113.45 port 40378 ssh2
+Nov 17 02:15:12 lnx-bastion-01 sshd[2162]: Failed password for root from 203.0.113.45 port 40084 ssh2
+Nov 17 02:15:30 lnx-bastion-01 sshd[2180]: Failed password for root from 203.0.113.45 port 40210 ssh2
+Nov 17 02:15:48 lnx-bastion-01 sshd[2198]: Failed password for root from 203.0.113.45 port 40336 ssh2
+Nov 17 02:16:06 lnx-bastion-01 sshd[2166]: Failed password for root from 203.0.113.45 port 40042 ssh2
+Nov 17 02:16:24 lnx-bastion-01 sshd[2184]: Failed password for root from 203.0.113.45 port 40168 ssh2
+Nov 17 02:16:42 lnx-bastion-01 sshd[2202]: Failed password for root from 203.0.113.45 port 40294 ssh2
+Nov 17 02:17:00 lnx-bastion-01 sshd[2170]: Failed password for root from 203.0.113.45 port 40000 ssh2
+Nov 17 02:17:18 lnx-bastion-01 sshd[2188]: Failed password for root from 203.0.113.45 port 40126 ssh2
+Nov 17 09:30:00 lnx-bastion-01 auditd: /etc/ssh/sshd_config modified by admin.ops (PasswordAuthentication no) | Change ticket: CHG-1038

@@ -1,0 +1,9 @@
+# SIMULATED EVIDENCE — Cybersec Academy synthetic dataset (synthetic-v1). Fictional users and documentation-range IPs.
+timestamp_utc,portal,username,source_ip,result
+2026-11-20T22:05:00Z,remote-access,m.okafor,203.0.113.45,FAILED_INVALID_CREDENTIALS
+2026-11-20T22:05:30Z,remote-access,m.okafor,203.0.113.45,FAILED_INVALID_CREDENTIALS
+2026-11-20T22:06:00Z,remote-access,m.okafor,203.0.113.45,FAILED_INVALID_CREDENTIALS
+2026-11-20T22:06:30Z,remote-access,m.okafor,203.0.113.45,FAILED_INVALID_CREDENTIALS
+2026-11-20T22:07:00Z,remote-access,m.okafor,203.0.113.45,FAILED_INVALID_CREDENTIALS
+2026-11-20T22:07:30Z,remote-access,m.okafor,203.0.113.45,FAILED_INVALID_CREDENTIALS
+2026-11-20T22:09:00Z,remote-access,m.okafor,203.0.113.45,SUCCESS
