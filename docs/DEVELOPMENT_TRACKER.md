@@ -1,30 +1,30 @@
 # Development tracker
 
-Last updated: 2026-11-27
+Last updated: 2026-11-27 (session 2)
 
 ## Phase status
 
 | Phase | Status | Notes |
 |---|---|---|
 | 01 Product architecture and requirements | **Done** | `docs/ARCHITECTURE.md`, `docs/LAB_SAFETY.md` |
-| 02 UI/UX design | **In review** | Figma blocked by plan quota (see `INTEGRATIONS.md`). Tokens + 6 mockups in `design/`. **Waiting for your feedback before frontend work.** |
+| 02 UI/UX design | **Approved** | Approved by you. Figma file still empty (plan quota). Tokens + mockups in `design/`. |
 | 03 Repository and dev environment | **Done** | Monorepo, `.gitignore`, `.gitattributes`, `.env.example`, Dockerfile/compose (not build-tested: no Docker daemon here) |
-| 04 Database and authentication | **Done locally** | 3 migrations, RLS on all 28 tables. Not yet applied to Supabase (no access). |
-| 05 Next.js frontend foundation | Not started | Blocked on design approval |
+| 04 Database and authentication | **Done locally** | 3 migrations, RLS on all 28 tables. Supabase project **not created yet**: the saved token is rejected (see known issues). |
+| 05 Next.js frontend foundation | **Done** | Next.js 16 + Tailwind 4, httpOnly-cookie auth, backend-for-frontend proxy, route guard, desktop sidebar + mobile tab bar |
 | 06 FastAPI backend | **Done for MVP scope** | All MVP routes implemented and tested |
-| 07 SOC Operations Centre | Backend done | `/soc/overview`, metrics computed from data |
-| 08 SIEM Investigation Lab | Backend done | 352 events, search/filter/paging, 10 rules, live rule runs, alerts, investigations |
-| 09 Digital Forensics Lab | Backend done | 5 evidence files, hashes, chain of custody, timeline, hash demo |
-| 10 Network Security Lab | Backend done | Topology, packet walkthrough, traffic records, subnet calculator, 3 labs |
-| 11 Incident Response Centre | Backend done | 9-stage workflow enforced in the database, updates, reports |
-| 12 Cybersecurity Academy | Backend + initial content | 3 of 14 learning paths have lessons; the other 11 are not yet written |
+| 07 SOC Operations Centre | **MVP done** | `/soc/overview`, metrics computed from data |
+| 08 SIEM Investigation Lab | **MVP done** | 352 events, search/filter/paging, 10 rules, live rule runs, alerts, investigations |
+| 09 Digital Forensics Lab | Backend done, UI next | 5 evidence files, hashes, chain of custody, timeline, hash demo |
+| 10 Network Security Lab | Backend done, UI next | Topology, packet walkthrough, traffic records, subnet calculator, 3 labs |
+| 11 Incident Response Centre | Backend done, UI next | 9-stage workflow enforced in the database, updates, reports |
+| 12 Cybersecurity Academy | **MVP done** (catalogue, course, lesson, quiz, inline graded exercise) | 3 of 14 learning paths have lessons; the other 11 are not yet written |
 | 13 Educational video experience | Not started | |
 | 14 Testing and security review | Ongoing | 72 automated tests; full review planned after frontend |
 | 15 Cloud deployment | Not started | Needs Supabase + Vercel access and your approval |
 | 16 Public introduction and portfolio | Not started | |
 
-**Current phase:** 02 design review → then 05 frontend foundation.
-**Next milestone:** Working Next.js app (landing, register/login, dashboard, SOC, SIEM) talking to this API.
+**Current phase:** 09–11 lab screens (Forensics, Network, Incident Response) + profile, settings, achievements, admin.
+**Next milestone:** every one of the 20 screens working end to end; then Supabase + staging deployment.
 
 ## Test report (2026-11-27)
 
@@ -39,15 +39,28 @@ migrations, seeds data). Result: **72 passed, 0 failed** in ~21 s, on PostgreSQL
 
 Lint: `ruff check app tests` → clean (security rules `S` enabled).
 
-Not yet tested (needs the frontend or cloud): frontend components, mobile responsiveness,
-accessibility audit, Supabase-hosted RLS, deployment smoke tests.
+### End-to-end browser test (session 2)
+
+Command: `node tests/e2e/mvp-smoke.cjs` with the API on :8000 and `next start` on :3000.
+Result: **28/28 checks passed** in Chromium (desktop 1440×900 and Pixel 7 emulation): landing; signed-out
+redirect; registration → onboarding → dashboard; session cookie is httpOnly and invisible to page JavaScript;
+lesson quiz graded 3/3; lesson completion; exercise safety boundary shown; partial credit then correct answer;
+SOC shows 352 events, attack chain and Plotly chart; SIEM search (19 events), event detail, alert triage
+closed as expected activity, live rule run; dashboard counters update; proxy rejects non-allowlisted areas
+(404) and cross-site POSTs (403); mobile tab bar, "More" sheet, no horizontal overflow; sign-out; **zero
+console errors or failed requests during normal use**. Screenshots: `docs/screenshots/app-*.png`.
+
+Frontend lint (`npm run lint`) clean; production build (`npm run build`) succeeds.
+
+Not yet tested: formal accessibility audit (axe), Supabase-hosted RLS, deployment smoke tests.
 
 ## Known issues and limitations
 
 1. **Figma file is empty** because of the Starter-plan MCP limit. Designs live in `design/` for now.
-2. **Supabase not connected.** Everything is tested on local Postgres with a shim reproducing Supabase auth functions; must be re-verified on a real Supabase project.
+2. **Supabase not connected.** Network access to api.supabase.com is now allowed for this repository's environment, but the saved credential is rejected by Supabase with *401 "JWT could not be decoded"*. The Management API needs a **personal access token** (starts with `sbp_`, from Account → Access Tokens), not a project API key. Everything is tested on local Postgres meanwhile.
 3. **Supabase JWT verification uses the HS256 JWT secret.** Newer Supabase projects can use asymmetric signing keys (JWKS); support for that will be added when connecting the real project.
 4. **Login rate limiting is in-memory** (per process). On serverless hosting each instance counts separately; Supabase Auth's own limits apply in production.
 5. **Docker image not build-tested** (no daemon in this environment).
-6. Only 3 of the 14 requested learning paths have lessons so far.
+6. Only 3 of the 14 requested learning paths have lessons so far (the Academy page lists the other 11 as planned).
+8. Navigation items for screens not built yet are visibly disabled with a "Soon" tag, not dead links.
 7. Forensic evidence excerpts were written by hand to match the dataset; SSH process ids/ports in `auth_excerpt_lnx-bastion-01.log` differ slightly from the SIEM rows.
