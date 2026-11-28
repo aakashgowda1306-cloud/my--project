@@ -1,0 +1,29 @@
+# Godot 4 cache / generated data (rebuilt automatically when you open the project)
+.godot/
+.import/
+*.translation
+
+# Godot-specific exports & builds
+export/
+builds/
+export_presets.cfg.bak
+*.tmp
+
+# Mono / C# (not used, but harmless)
+.mono/
+data_*/
+mono_crash.*.json
+
+# Blender backups and autosaves (keep the real .blend files!)
+*.blend1
+*.blend2
+*.blend@
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/

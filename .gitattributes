@@ -1,0 +1,20 @@
+# Normalize line endings so Windows and Linux edits don't fight each other.
+* text=auto eol=lf
+
+# Binary assets — never touch line endings, never try to diff.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.exr binary
+*.hdr binary
+*.wav binary
+*.ogg binary
+*.mp3 binary
+*.glb binary
+*.blend binary
+*.fbx binary
+*.ttf binary
+*.otf binary
+*.res binary
+*.scn binary

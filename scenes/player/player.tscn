@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_ctrl"]
+[ext_resource type="Script" path="res://scripts/player/camera_rig.gd" id="2_cam"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_body"]
+radius = 0.35
+height = 1.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_body"]
+radius = 0.33
+height = 1.76
+
+[sub_resource type="StandardMaterial3D" id="Mat_jacket"]
+albedo_color = Color(0.82, 0.38, 0.16, 1)
+roughness = 0.65
+
+[sub_resource type="BoxMesh" id="BoxMesh_visor"]
+size = Vector3(0.42, 0.12, 0.14)
+
+[sub_resource type="StandardMaterial3D" id="Mat_visor"]
+albedo_color = Color(0.08, 0.1, 0.13, 1)
+metallic = 0.7
+roughness = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_pack"]
+size = Vector3(0.4, 0.5, 0.18)
+
+[sub_resource type="StandardMaterial3D" id="Mat_pack"]
+albedo_color = Color(0.18, 0.2, 0.24, 1)
+roughness = 0.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cam"]
+radius = 0.2
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_ctrl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_body")
+
+[node name="BodyPivot" type="Node3D" parent="."]
+
+[node name="BodyMesh" type="MeshInstance3D" parent="BodyPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.88, 0)
+layers = 2
+mesh = SubResource("CapsuleMesh_body")
+surface_material_override/0 = SubResource("Mat_jacket")
+
+[node name="Visor" type="MeshInstance3D" parent="BodyPivot/BodyMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, -0.26)
+layers = 2
+mesh = SubResource("BoxMesh_visor")
+surface_material_override/0 = SubResource("Mat_visor")
+
+[node name="Backpack" type="MeshInstance3D" parent="BodyPivot/BodyMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0.36)
+layers = 2
+mesh = SubResource("BoxMesh_pack")
+surface_material_override/0 = SubResource("Mat_pack")
+
+[node name="CameraRig" type="Node3D" parent="."]
+top_level = true
+script = ExtResource("2_cam")
+
+[node name="Pitch" type="Node3D" parent="CameraRig"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraRig/Pitch"]
+collision_mask = 1
+shape = SubResource("SphereShape3D_cam")
+spring_length = 3.6
+margin = 0.1
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig/Pitch/SpringArm3D"]
+current = true
+fov = 70.0
+near = 0.05
+far = 1500.0

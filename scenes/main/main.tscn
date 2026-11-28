@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/world/test_district.tscn" id="1_world"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://UI/hud/hud.tscn" id="3_hud"]
+[ext_resource type="Script" path="res://scripts/systems/main.gd" id="4_main"]
+
+[sub_resource type="ProceduralSkyMaterial" id="SkyMat_day"]
+sky_top_color = Color(0.3, 0.44, 0.68, 1)
+sky_horizon_color = Color(0.74, 0.7, 0.66, 1)
+ground_bottom_color = Color(0.16, 0.15, 0.14, 1)
+ground_horizon_color = Color(0.74, 0.7, 0.66, 1)
+
+[sub_resource type="Sky" id="Sky_day"]
+sky_material = SubResource("SkyMat_day")
+
+[sub_resource type="Environment" id="Env_day"]
+background_mode = 2
+sky = SubResource("Sky_day")
+ambient_light_source = 3
+ambient_light_energy = 0.5
+reflected_light_source = 2
+tonemap_mode = 2
+tonemap_exposure = 0.9
+tonemap_white = 6.0
+glow_enabled = true
+glow_intensity = 0.4
+fog_enabled = true
+fog_light_color = Color(0.7, 0.72, 0.76, 1)
+fog_density = 0.0015
+fog_sky_affect = 0.3
+
+[node name="Main" type="Node3D"]
+script = ExtResource("4_main")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env_day")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.819152, -0.383798, 0.42625, 0, 0.743145, 0.669131, -0.573576, -0.54812, 0.608749, 0, 40, 0)
+light_color = Color(1, 0.95, 0.86, 1)
+light_energy = 1.0
+shadow_enabled = true
+directional_shadow_max_distance = 140.0
+
+[node name="TestDistrict" parent="." instance=ExtResource("1_world")]
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.05, 14)
+
+[node name="HUD" parent="." instance=ExtResource("3_hud")]
